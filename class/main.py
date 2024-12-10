@@ -65,4 +65,4 @@ def main():
         user_choice = int(input("Choose option: "))
         options_binds[user_choice]()
 
-# main()
+main()
