@@ -1,12 +1,16 @@
 from typing import Callable
-from . import reviews_manager
+
+import reviews_manager
 
 options = [
-    "Menu",
+    "Exit without save",
     "Show",
     "Add",
-    "Exit without save",
+    "Delete",
+    "Save",
+    "Save & exit",
 ]
+
 
 def print_menu():
     title = "Reviews Menu"
@@ -14,15 +18,21 @@ def print_menu():
     for n, option in enumerate(options):
         print(f"  {n}. {option}")
 
+
 def exit_menu():
     exit()
 
 
+def save_and_exit():
+    reviews_manager.save_reviews()
+    exit_menu()
+
+
 options_binds: list[Callable[[], None]] = [
-     print_menu,
-     reviews_manager.print_reviews,
-     reviews_manager.add_review,
-     exit_menu,
+    exit_menu,
+    reviews_manager.print_reviews,
+    reviews_manager.add_review,
+    reviews_manager.delete_review,
+    reviews_manager.save_reviews,
+    save_and_exit,
 ]
-
-
